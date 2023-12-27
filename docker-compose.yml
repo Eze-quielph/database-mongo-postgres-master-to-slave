@@ -4,7 +4,7 @@ services:
   postgresql-master:
     image: 'docker.io/bitnami/postgresql:11-debian-10'
     ports:
-      - '5432:5432'
+      - '3030:3030'
     volumes:
       - 'postgresql_master_data:/bitnami/postgresql'
     environment:
@@ -19,7 +19,7 @@ services:
   postgresql-slave:
     image: 'docker.io/bitnami/postgresql:11-debian-10'
     ports:
-      - '5433:5432'
+      - '3333:3333'
     depends_on:
       - postgresql-master
     environment:
@@ -33,7 +33,7 @@ services:
       - POSTGRESQL_REPLICATION_PASSWORD=repl_password
       - POSTGRESQL_MASTER_PORT_NUMBER=5432
   mongodb:
-    image: 'mongo:latest'
+    image: 'mongo:4.4'
     ports:
       - '27017:27017'
     volumes:
